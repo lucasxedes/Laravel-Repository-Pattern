@@ -9,6 +9,4 @@ use App\Repositories\Contracts\UserRepositoryinterface;
 class UserRepository extends AbstractRepository implements UserRepositoryinterface
 {
     protected $model = User::class;
-
-  
 }

@@ -18,6 +18,11 @@ abstract class AbstractRepository
         return $this->model->create($data);
     }
     
+    public function find($id)
+    {
+        return $this->model->find($id); 
+    }
+
     protected function resolveModel()
     {
         return app($this->model);

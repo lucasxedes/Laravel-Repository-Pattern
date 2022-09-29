@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryinterface;
 use Illuminate\Http\Request;
 
@@ -16,21 +15,18 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, UserRepositoryinterface $model)
     {
-        $user = User::find($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
-
+        $user = $model->find($id);
+        //dd($user);
+        $user->update($request->all());
+        //dd($user);
         return response()->json(['User Success Update' => $user]);
     }
 
-    public function destroy($id)
+    public function destroy($id, UserRepositoryinterface $model)
     {
-        $user = User::find($id);
+        $user = $model->find($id);
         $user->delete($user);
         return response()->json(['User Success Deleted' => $user]);
     }
