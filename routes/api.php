@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::delete('/destroy/{id}', [UserController::class, 'destroy']);
-Route::post('/store', [UserController::class, 'store']);
-Route::put('/update/{id}', [UserController::class, 'update']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/store', [UserController::class, 'store']);
+
+Route::middleware('auth:api')->group(function() {
+    Route::put('/update/{id}', [UserController::class, 'update']);
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy']);
 });

@@ -10,7 +10,11 @@ class UserController extends Controller
    
     public function store(Request $request, UserRepositoryinterface $model)
     {
-        $user = $model->store($request->all());
+        $user = $model->store([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
         return response()->json(['Success create User' => $user]);
 
     }

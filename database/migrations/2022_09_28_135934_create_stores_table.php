@@ -18,10 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_store');
             $table->foreign('user_store')->references('id')->on('users');
             $table->string('balance');
+            $table->string('type_product');
             $table->string('total_products_sold');
             $table->string('quantity_of_products');
-            $table->string('shelf_products');
-            $table->string('product_stock');
             $table->timestamps();
         });
     }
